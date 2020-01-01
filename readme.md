@@ -3,7 +3,7 @@
 
 1. node.js v10.16.0
 2. npm v6.9.0
-3. ionic3 5.4.13
+3. ionic 5.4.13 --type ionic-angular
 3. cordova v9.0.0 (cordova-lib@9.0.1)
 
 ## Requisitos do banco utilizado (MySql)
@@ -22,3 +22,4 @@
 |version_malloc_library|	system|
 |version_source_revision|	*0789a1a18f0e780c0412667e7b6e0a9970aa6905|
 |version_ssl_library|	YaSSL 2.4.4|
+
