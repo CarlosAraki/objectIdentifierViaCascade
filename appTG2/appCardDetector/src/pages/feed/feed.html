@@ -1,0 +1,22 @@
+<!--
+  Generated template for the FeedPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar>
+    <ion-title>Feed</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content padding>
+  <ion-content class="card-background-page">
+  
+    <ion-card *ngFor="let picture of src_pictures" >
+      <img src={{picture.src}} />
+      <div class="card-title">{{picture.title}}</div>
+      <div class="card-subtitle">{{picture.description}}</div>
+    </ion-card>
+
+  </ion-content>
+</ion-content>
