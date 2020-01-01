@@ -3,7 +3,7 @@ create database if  not exists
 
 USE tg2_database;
 SHOW VARIABLES LIKE "%version%";
-create table credential_login(
+create table if not exists credential_login(
     id bigint(20) NOT NULL AUTO_INCREMENT,
     login text DEFAULT NULL COMMENT 'login ',
     senha text  DEFAULT NULL COMMENT 'senha',
