@@ -5,6 +5,7 @@
 2. npm v6.9.0
 3. ionic 5.4.13 --type ionic-angular
 3. cordova v9.0.0 (cordova-lib@9.0.1)
+4. @angular/http@7.2.15
 
 ## Requisitos do banco utilizado (MySql)
 

@@ -11,6 +11,9 @@ import { TabsPage } from '../pages/tabs/tabs';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { FeedPageModule } from '../pages/feed/feed.module';
+import { HttpClientModule } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { PictureshostProvider } from '../providers/pictureshost/pictureshost';
 
 @NgModule({
   declarations: [
@@ -23,8 +26,8 @@ import { FeedPageModule } from '../pages/feed/feed.module';
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
-    FeedPageModule
-
+    FeedPageModule,
+    HttpClientModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -37,7 +40,8 @@ import { FeedPageModule } from '../pages/feed/feed.module';
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    PictureshostProvider
   ]
 })
 export class AppModule {}

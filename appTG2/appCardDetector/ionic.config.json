@@ -1,5 +1,7 @@
 {
   "name": "appCardDetector",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "ionic-angular"
 }
