@@ -24,3 +24,8 @@
 |version_source_revision|	*0789a1a18f0e780c0412667e7b6e0a9970aa6905|
 |version_ssl_library|	YaSSL 2.4.4|
 
+## Requisitos utilizados na API (JAVA)
+
+1. java version "1.8.0_221" (Versão 8)
+2. Java(TM) SE Runtime Environment (build 1.8.0_221-b11)
+3. Java HotSpot(TM) 64-Bit Server VM (build 25.221-b11, mixed mode)
