@@ -1,5 +1,13 @@
 //Campo de Request HTTP para teste da API
 
-GET http://localhost/TG2/apiTG2/data
+GET http://localhost:8080/rest/logins/all
 
 ###
+POST http://localhost:8080/rest/logins/load HTTP/1.1
+content-type: application/json
+
+{
+    "login" : "Mais Um Cara",
+    "senha" : "Cade a senha"
+}
+
