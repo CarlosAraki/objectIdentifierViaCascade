@@ -16,7 +16,7 @@ export class PictureshostProvider {
   }
 
   public ping(){
-    // return this.http.get(this.basePath+'data');
+    return this.http.get(this.basePath+'data');
   }
 
 }
