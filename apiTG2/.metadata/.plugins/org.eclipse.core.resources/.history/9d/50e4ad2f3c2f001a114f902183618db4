@@ -1,7 +1,0 @@
-package com.apitg2.apitg2.repository;
-
-import org.springframework.data.jpa.repository.JpaRepository;
-
-public class LoginRepository extends JpaRepository {
-
-}

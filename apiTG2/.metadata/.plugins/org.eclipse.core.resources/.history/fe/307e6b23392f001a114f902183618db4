@@ -1,9 +1,0 @@
-package com.apitg2.apitg2.models;
-
-import javax.persistence.Table;
-
-@Entity
-@Table(name="credential_login")
-public class Login {
-
-}
