@@ -1,0 +1,5 @@
+package com.apitg2.apitg2.models;
+
+public class Login {
+
+}
