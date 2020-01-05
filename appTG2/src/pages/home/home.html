@@ -5,8 +5,36 @@
 </ion-header>
 
 <ion-content padding>
-  <h2>App Pra reconhecimento de imagem para cartas</h2>
-  <p>
-    Como faremos?
-  </p>
+  <h2>Home Utilizada para Teste de Post e Get</h2>
+  <ion-card>
+    <form [formGroup]="loginForm">
+      <div align ="center">
+        <ion-list >
+          <ion-item>
+            <ion-input type="text" formControlName="login" ></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-input type="password" formControlName="senha"></ion-input>
+          </ion-item>
+          <button ion-button color="dark" (click) ="salvarLogin()">Salvar Login</button>
+        </ion-list>
+      </div>
+    </form>
+  </ion-card>
+  
+  <h3>Lista de Logins Cadastrados</h3>
+
+  <ion-card>
+    <ion-list *ngFor="let login of src_logins" >
+      <ion-card>
+        <div align ="center">
+          <p>{{login.login}}</p>
+          <p>{{login.senha}}</p>
+          <button ion-button color="dark" (click) ="excluirLogin(login.id)">Excluir Login</button>
+        </div>
+      </ion-card>
+    </ion-list>
+  </ion-card>
+
+
 </ion-content>

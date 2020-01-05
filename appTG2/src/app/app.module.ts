@@ -12,8 +12,8 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { FeedPageModule } from '../pages/feed/feed.module';
 import { HttpClientModule } from '@angular/common/http';
-import { Injectable } from '@angular/core';
 import { PictureshostProvider } from '../providers/pictureshost/pictureshost';
+import { LoginsProvider } from '../providers/logins/logins';
 
 @NgModule({
   declarations: [
@@ -41,7 +41,8 @@ import { PictureshostProvider } from '../providers/pictureshost/pictureshost';
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    PictureshostProvider
+    PictureshostProvider,
+    LoginsProvider
   ]
 })
 export class AppModule {}

@@ -10,7 +10,7 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class PictureshostProvider {
 
-  private basePath = 'http://localhost/TG2/apiTG2/'
+  private basePath = 'http://localhost:8080/'
   constructor(public http: HttpClient) {
     console.log('Hello PictureshostProvider Provider');
   }
