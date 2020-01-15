@@ -18,6 +18,8 @@ public class Logins {
     private String login;
     @Column(name = "senha")
     private String senha;
+    @Column(name = "excluido")
+    private String excluido;
     public  Logins(){
     }
     public Integer getId(){
@@ -37,5 +39,11 @@ public class Logins {
     }
     public void setSenha(String senha){
         this.senha = senha;
+    }
+    public String getExcluido(){
+        return excluido;
+    }
+    public void setExcluido(String excluido){
+        this.excluido = excluido;
     }
 }

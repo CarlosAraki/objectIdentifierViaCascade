@@ -1,13 +1,25 @@
 //Campo de Request HTTP para teste da API
 
-GET http://localhost:8080/rest/logins/all
+GET http://http://192.168.0.18:8080/rest/logins/all
 
 ###
-POST http://localhost:8080/rest/logins/load HTTP/1.1
+POST http://192.168.0.18:8080/rest/logins/load HTTP/1.1
+content-type: application/json
+
+{   
+    "login" : "Carlos",
+    "senha" : "1234",
+    "excluido":"nao"
+}
+
+###
+
+POST http://192.168.0.18:8080/rest/logins/exclude HTTP/1.1
 content-type: application/json
 
 {
-    "login" : "Mais Um Cara",
-    "senha" : "Cade a senha"
+    "id"    : 4
 }
+
+
 

@@ -67,3 +67,9 @@
 [] Configurar dependências OpenCV
 [] Implementar Model para salvar imagem em um diretório local
 [] Implementar Decode e Enconde da imagem em comunicação para o app
+
+
+# Alterações de Base Path
+
+1. providers
+2. ionic config json 
