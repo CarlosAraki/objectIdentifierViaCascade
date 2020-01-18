@@ -7,7 +7,7 @@
   "proxies": [
     {
       "path": "/apiTg2" ,
-      "proxyUrl": "http://192.168.15.31:8080"
+      "proxyUrl": "http://192.168.15.24:8080"
     }
   ]
 }

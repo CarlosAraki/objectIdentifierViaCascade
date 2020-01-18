@@ -39,7 +39,6 @@ export class HomePage {
       login: this.loginForm.value.login,
       senha: this.loginForm.value.senha
     };
-    console.log('credencial',);
     let credentialsJSON = JSON.stringify(credentials);
     this._loginsProvider.addLogin(credentialsJSON).subscribe(
       data=>{

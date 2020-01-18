@@ -1,7 +1,6 @@
-import { HttpHeaders } from '@angular/common/http';
 import { HttpClient } from '@angular/common/http';
-import { Injectable, Inject } from '@angular/core';
-import { APP_CONFIG_TOKEN, APP_CONFIG, ApplicationConfig } from '../../app/app-config';
+import { HttpHeaders } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 import { Platform } from 'ionic-angular';
 
 /*
@@ -17,17 +16,38 @@ export class PicturesProvider {
 
   constructor(
     public http: HttpClient,
-    private _plataform: Platform,
-    @Inject(APP_CONFIG_TOKEN) private config: ApplicationConfig
+    private _plataform: Platform
     ) 
     {
       if(this._plataform.is("cordova")){
-        this.basePath =  config.apiEndpoint;
+        this.basePath = "http://192.168.15.24:8080";
       }
   }
 
-  public getAllNotExcludeLogins(){
-    return this.http.get(this.basePath+'/rest/logins/all');
+  public getAllNotExcludePictures(){
+    return this.http.get(this.basePath+'/rest/pictures/all');
+  }
+
+  public addPicture(body){
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+      })
+    };  
+    return this.http.post(this.basePath+'/rest/pictures/load',body, httpOptions);
+  }
+
+  public excludePicture(id){
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+      })
+    };  
+    return this.http.post(this.basePath+'/rest/pictures/exclude',id,httpOptions);
+  }
+
+  public getPictureById(id){
+    return this.http.get(this.basePath+'/rest/pictures/loadbyid',id);
   }
 
 }

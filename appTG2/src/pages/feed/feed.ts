@@ -1,6 +1,7 @@
 import { PictureshostProvider } from './../../providers/pictureshost/pictureshost';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
+import { PicturesProvider } from '../../providers/pictures/pictures';
 
 
 /**
@@ -20,33 +21,27 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class FeedPage {
   
-  public src_pictures: any =
-  [
-    {
-    src : "assets/pictures/teste.png",
-    title :"Titulo 1",
-    description: "Descrição 1"
-    },
-    {
-    src : "assets/pictures/teste.png",
-    title :"Titulo 2",
-    description: "Descrição 2"
-    },
-    {
-    src : "assets/pictures/teste.png",
-    title :"Titulo 3",
-    description: "Descrição 3"
-    }
-    ];
+  public src_pictures: any =[];
+  public loading:any;
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
-    public _pictureshostProvider : PictureshostProvider
-    ){}
+    public _pictureProvider : PicturesProvider,
+    public loadingCtrl: LoadingController
+    ){
+      this.loading = this.loadingCtrl.create({
+        content: 'Espera ai to carregando ...'
+      });
+    }
 
   ionViewDidLoad() {
-    console.log('aaa');
-    this.testeDeFuncao(33);
+    this.loading.present();
+    this.dataCatch();
+  }
+
+  ionViewWillEnter(){
+    this.loading.present();
+    this.dataCatch();
   }
 
   /**
@@ -58,15 +53,15 @@ export class FeedPage {
   }
 
   public dataCatch(){
-    this._pictureshostProvider.ping().subscribe(
+    this._pictureProvider.getAllNotExcludePictures().subscribe(
       data=>{
-        const response = (data as any);
-        const obj_return = JSON.parse(response._body)
-        this.src_pictures = (obj_return);
-        console.log('data11',this.src_pictures);
+        console.log(data)
+        this.src_pictures = data;
+        this.loading.dismiss();
       },
       error=>{
-        console.log('erro');
+        console.log('erro dataCatch')
+        this.loading.dismiss();
       }
     )
   }

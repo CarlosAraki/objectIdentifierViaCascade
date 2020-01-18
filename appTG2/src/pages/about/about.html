@@ -1,7 +1,7 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      About
+      Funcao Camera
     </ion-title>
   </ion-navbar>
 </ion-header>
@@ -16,6 +16,34 @@
     </div>
   </ion-card>
   
-  <img [src]="currentImage" *ngIf="currentImage">
+  <h3 *ngIf="currentImage">Foto Atual</h3>
+  <div align ="center">
+    <img [src]="currentImage" *ngIf="currentImage">
+  </div>
+
+  <ion-card>
+    <div align ="center">
+      <button ion-button round (click)="allPictures()">
+        Todas as imagens
+      </button>
+    </div>
+  </ion-card>
+
+  <ion-card>
+    <h3>Lista de Fotos Cadastradas</h3>
+    <ion-card>
+        <div align ="center">
+          <button ion-button round color="blue" (click) ="clearPictures()">Limpar fotos</button>
+        </div>
+    </ion-card>
+    <ion-list *ngFor="let pic of allPic" >
+      <ion-card>
+        <div align ="center">
+          <img [src]="pic.jsonPic" *ngIf="pic.jsonPic">
+          <button ion-button round color="blue" (click) ="excluirPicture(pic.id)">Excluir Foto</button>
+        </div>
+      </ion-card>
+    </ion-list>
+  </ion-card>
 
 </ion-content>

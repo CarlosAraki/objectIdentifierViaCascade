@@ -19,4 +19,4 @@ create table if not exists pictures_camera(
     PRIMARY KEY(id)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-
+ALTER TABLE `pictures_camera` CHANGE `json` `json` LONGTEXT CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'json da camera';

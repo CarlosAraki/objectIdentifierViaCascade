@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
-import { Injectable, Inject } from '@angular/core';
-import { APP_CONFIG_TOKEN, APP_CONFIG, ApplicationConfig } from '../../app/app-config';
+import { Injectable } from '@angular/core';
 import { Platform } from 'ionic-angular';
 
 /*
@@ -17,12 +16,11 @@ export class LoginsProvider {
 
   constructor(
     public http: HttpClient,
-    private _plataform: Platform,
-    @Inject(APP_CONFIG_TOKEN) private config: ApplicationConfig
+    private _plataform: Platform
     ) 
     {
       if(this._plataform.is("cordova")){
-        this.basePath =  config.apiEndpoint;
+        this.basePath = "http://192.168.15.24:8080";
       }
   }
 

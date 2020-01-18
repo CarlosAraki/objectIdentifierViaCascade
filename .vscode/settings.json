@@ -2,5 +2,6 @@
     "java.dependency.syncWithFolderExplorer": false,
     "powermode.enabled": true,
     "powermode.presets": "flames",
-    "java.configuration.updateBuildConfiguration": "disabled"
+    "java.configuration.updateBuildConfiguration": "disabled",
+    "editor.maxTokenizationLineLength": 1000000
 }

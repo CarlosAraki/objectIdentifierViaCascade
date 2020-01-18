@@ -13,9 +13,9 @@
   <ion-content class="card-background-page">
   
     <ion-card *ngFor="let picture of src_pictures" >
-      <img src={{picture.src}} />
-      <div class="card-title">{{picture.title}}</div>
-      <div class="card-subtitle">{{picture.description}}</div>
+      <img src={{picture.jsonPic}} />
+      <div class="card-title">{{picture.id}}</div>
+      <div class="card-subtitle">{{picture.date}}</div>
     </ion-card>
 
   </ion-content>
