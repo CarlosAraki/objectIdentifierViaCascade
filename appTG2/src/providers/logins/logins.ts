@@ -20,7 +20,7 @@ export class LoginsProvider {
     ) 
     {
       if(this._plataform.is("cordova")){
-        this.basePath = "http://192.168.15.22:8080";
+        this.basePath = "http://192.168.15.31:8080";
       }
   }
 

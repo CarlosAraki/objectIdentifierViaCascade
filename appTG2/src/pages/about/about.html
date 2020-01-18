@@ -8,4 +8,14 @@
 
 <ion-content padding>
 
+  <ion-card>
+    <div align ="center">
+      <button ion-button round (click)="takePicture()">
+        Camera
+      </button>
+    </div>
+  </ion-card>
+  
+  <img [src]="currentImage" *ngIf="currentImage">
+
 </ion-content>
