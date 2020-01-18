@@ -1,6 +1,7 @@
 package com.apitg2.apitg2.resources;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -21,6 +22,7 @@ public class LoginResources {
     @Autowired
     LoginRepository loginRepository;
 
+    @CrossOrigin
     @GetMapping(value = "/all")
     public List<Logins> getAll() {
         List <Logins> logins = loginRepository.findAll();
@@ -33,6 +35,7 @@ public class LoginResources {
         return logins_sem_excluido;
     }
 
+    @CrossOrigin
     @PostMapping(value = "/load")
     public List<Logins> persist(@RequestBody final Logins login) {
         login.setExcluido("nao");
@@ -40,6 +43,7 @@ public class LoginResources {
         return this.getAll();
     }
 
+    @CrossOrigin
     @PostMapping(value = "/exclude")
     public List<Logins> exclude(@RequestBody final Logins login) {
         int id = login.getId();

@@ -15,6 +15,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { PictureshostProvider } from '../providers/pictureshost/pictureshost';
 import { LoginsProvider } from '../providers/logins/logins';
 import { Camera } from '@ionic-native/camera';
+import { PicturesProvider } from '../providers/pictures/pictures';
 
 
 @NgModule({
@@ -45,7 +46,8 @@ import { Camera } from '@ionic-native/camera';
     Camera,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     PictureshostProvider,
-    LoginsProvider
+    LoginsProvider,
+    PicturesProvider
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
