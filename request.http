@@ -23,11 +23,11 @@ content-type: application/json
 
 
 ###
-GET http://192.168.15.24:8080/rest/pictures/all
+GET http://192.168.15.39:8080/rest/pictures/opencv
 
 
 ###
-POST http://192.168.0.18:8080/rest/pictures/load HTTP/1.1
+POST http://192.168.15.34:8080/rest/pictures/load HTTP/1.1
 content-type: application/json
 
 {   

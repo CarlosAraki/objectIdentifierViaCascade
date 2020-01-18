@@ -58,14 +58,15 @@
 
 
 ## Implementações APP
-[] Integrar o app com informações do Banco Local através da API em JAVA 
+[x] Integrar o app com informações do Banco Local através da API em JAVA 
     *. [x]Implementar Tela de home como um CRUD básico para testar conexões Http/1.1 via POST e GET
     *. [x]Implementar Tela com botão para utilização mínima da camera 
-    *. []Converter a imagem em datx64 e transformar informação em um JSON para API  
+    *. [x]Converter a imagem em datx64 e transformar informação em um JSON para API  
 
 ## Implementações API 
-[] Configurar dependências OpenCV
-[] Implementar Model para salvar imagem em um diretório local
+[x] Configurar dependências OpenCV
+[] Necessário fazer uma aplicação básica pro opencv
+[x] Implementar Model para salvar imagem em um diretório local
 [] Implementar Decode e Enconde da imagem em comunicação para o app
 
 

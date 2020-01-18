@@ -4,6 +4,11 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Table;
+
+import org.opencv.core.Core;
+import org.opencv.core.CvType;
+import org.opencv.core.Mat;
+
 import javax.persistence.Id;
 
 @Entity
@@ -46,5 +51,12 @@ public class Pictures {
     }
     public void setExcluido(String excluido){
         this.excluido = excluido;
+    }
+
+    public void inicia(){
+        System.load("C:/opencv/build/java/x64/opencv_java420.dll");
+        System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
+        Mat mat = Mat.eye(3, 3, CvType.CV_8UC1);
+        System.out.println("mat = " + mat.dump());
     }
 }

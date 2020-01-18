@@ -59,4 +59,13 @@ public class PictureResouces {
     public Optional<Pictures> loadbyid(@RequestBody final int id) {
         return pictureRepository.findById(id);
     }
+
+
+    @CrossOrigin
+    @GetMapping(value = "/opencv")
+    public List<Pictures> opencv() {
+        Pictures pic = new Pictures();
+        pic.inicia();
+        return pictureRepository.findAll();
+    }
 }
