@@ -12,7 +12,7 @@ export interface ApplicationConfig {
 // Configuration values for our app
 export var APP_CONFIG: ApplicationConfig = {
   appName: 'Tg2',
-  apiEndpoint: 'http://192.168.15.31:8080',
+  apiEndpoint: 'http://localhost:8080',
   adapter: 'idb',
   //adapter: 'cordova-sqlite',
 };

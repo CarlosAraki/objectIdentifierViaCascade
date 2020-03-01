@@ -12,7 +12,8 @@ export class AboutPage {
   public currentImage: any;
   public allPic: any =[];
   public loading:any;
-
+  public focusPic64:any; 
+  public focusPicid:any; 
 
   constructor(
     public navCtrl: NavController,
@@ -35,7 +36,7 @@ export class AboutPage {
       correctOrientation: true
     };
     this.camera.getPicture(options).then((imageData) => {
-      let jsonPic =  'data:image/jpeg;base64,' + imageData;
+      let jsonPic =  'data:image/png;base64,' + imageData;
       let date: Date = new Date();  
       this.currentImage = jsonPic;
       let data = {
@@ -75,6 +76,22 @@ export class AboutPage {
     )
   }
 
+
+  visualizarPicture(id){
+    this._pictureProvider.getPictureById((id)).subscribe(
+      data=>{
+        let focusPicAux :any = []; 
+        focusPicAux = data;
+        this.focusPicid = focusPicAux.id;
+        this.focusPic64 = focusPicAux.jsonPic;
+        console.log(this.focusPic64)
+      },
+      error=>{
+        console.log('erro');
+      }
+    )
+  }
+
   excluirPicture(id){
     this.loading.present();
     let idjson = {"id" : id}
@@ -94,4 +111,8 @@ export class AboutPage {
     this.allPic = [];
   }
 
+  clearPicture(){
+    console.log(this.focusPic64)
+    this.focusPic64 = '';
+  }
 }

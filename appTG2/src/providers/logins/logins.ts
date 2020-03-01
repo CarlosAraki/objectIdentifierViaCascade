@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, Inject } from '@angular/core';
 import { Platform } from 'ionic-angular';
-
+import { APP_CONFIG_TOKEN, ApplicationConfig } from '../../app/app-config';
 /*
   Generated class for the LoginsProvider provider.
 
@@ -16,16 +16,17 @@ export class LoginsProvider {
 
   constructor(
     public http: HttpClient,
-    private _plataform: Platform
+    private _plataform: Platform,
+    @Inject(APP_CONFIG_TOKEN) private config: ApplicationConfig,
     ) 
     {
       if(this._plataform.is("cordova")){
-        this.basePath = "http://192.168.15.24:8080";
+        //this.basePath = config.apiEndpoint;
       }
   }
 
   public getAllNotExcludeLogins(){
-    return this.http.get(this.basePath+'/rest/logins/all');
+    return this.http.get(this.basePath+'/api/login');
   }
 
   public addLogin(body){
@@ -34,7 +35,7 @@ export class LoginsProvider {
         'Content-Type':  'application/json',
       })
     };  
-    return this.http.post(this.basePath+'/rest/logins/load',body, httpOptions);
+    return this.http.post(this.basePath+'/api/login',body, httpOptions);
   }
 
   public excludeLogin(id){

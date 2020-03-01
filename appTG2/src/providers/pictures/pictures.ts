@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, Inject } from '@angular/core';
 import { Platform } from 'ionic-angular';
+import { ApplicationConfig, APP_CONFIG_TOKEN } from '../../app/app-config';
 
 /*
   Generated class for the PicturesProvider provider.
@@ -16,11 +17,12 @@ export class PicturesProvider {
 
   constructor(
     public http: HttpClient,
-    private _plataform: Platform
+    private _plataform: Platform,
+    @Inject(APP_CONFIG_TOKEN) private config: ApplicationConfig,
     ) 
     {
       if(this._plataform.is("cordova")){
-        this.basePath = "http://192.168.15.24:8080";
+        this.basePath = config.apiEndpoint;
       }
   }
 
@@ -47,7 +49,7 @@ export class PicturesProvider {
   }
 
   public getPictureById(id){
-    return this.http.get(this.basePath+'/rest/pictures/loadbyid',id);
+    return this.http.get(this.basePath+'/rest/pictures/loadbyid/'+id);
   }
 
 }

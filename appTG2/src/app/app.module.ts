@@ -7,6 +7,8 @@ import { AboutPage } from '../pages/about/about';
 import { ContactPage } from '../pages/contact/contact';
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
+import { APP_CONFIG_TOKEN, APP_CONFIG } from './app-config';
+
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -43,6 +45,7 @@ import { PicturesProvider } from '../providers/pictures/pictures';
   providers: [
     StatusBar,
     SplashScreen,
+    {provide: APP_CONFIG_TOKEN, useValue: APP_CONFIG},
     Camera,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     PictureshostProvider,

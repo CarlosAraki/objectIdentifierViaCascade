@@ -30,16 +30,25 @@
   </ion-card>
 
   <ion-card>
-    <h3>Lista de Fotos Cadastradas</h3>
     <ion-card>
+    <h3>Lista de Fotos Cadastradas</h3>
         <div align ="center">
           <button ion-button round color="blue" (click) ="clearPictures()">Limpar fotos</button>
         </div>
     </ion-card>
+    <ion-card *ngIf="focusPic64" >
+      <h3>Foto em Foco</h3>
+          <div align ="center">
+            <img [src]="focusPic64" (click) ="clearPicture(focusPicid)">
+            <button ion-button round color="blue" (click) ="excluirPicture(focusPicid)">Excluir Foto</button>
+            <button ion-button round color="blue" (click) ="clearPicture(focusPicid)">Limpar Foto</button>
+            <button ion-button round color="blue" >Opção Foto</button>
+          </div>
+      </ion-card>
     <ion-list *ngFor="let pic of allPic" >
       <ion-card>
         <div align ="center">
-          <img [src]="pic.jsonPic" *ngIf="pic.jsonPic">
+          <img style="width: 100%;height: auto;max-width: 100px;" [src]="pic.jsonPic" *ngIf="pic.jsonPic"  (click) ="visualizarPicture(pic.id)">
           <button ion-button round color="blue" (click) ="excluirPicture(pic.id)">Excluir Foto</button>
         </div>
       </ion-card>

@@ -34,11 +34,6 @@ export class FeedPage {
       });
     }
 
-  ionViewDidLoad() {
-    this.loading.present();
-    this.dataCatch();
-  }
-
   ionViewWillEnter(){
     this.loading.present();
     this.dataCatch();

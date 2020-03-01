@@ -23,7 +23,7 @@ content-type: application/json
 
 
 ###
-GET http://192.168.15.39:8080/rest/pictures/opencv
+GET http://192.168.0.26:8080/rest/pictures/all
 
 
 ###
@@ -32,6 +32,27 @@ content-type: application/json
 
 {   
     "login" : "Carlos",
+    "senha" : "1234",
+    "excluido":"nao"
+}
+
+###
+GET http://192.168.0.19:8080/rest/pictures/loadbyid/57
+###
+GET http://192.168.0.18:8080/rest/pictures/inicio
+
+
+###
+GET http://localhost:8000/api/login/
+
+
+###
+
+POST http://localhost:8000/api/login/ HTTP/1.1
+content-type: application/json
+
+{   
+    "login" : "Carlos11111",
     "senha" : "1234",
     "excluido":"nao"
 }
