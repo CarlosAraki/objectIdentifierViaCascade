@@ -43,16 +43,33 @@ GET http://192.168.0.18:8080/rest/pictures/inicio
 
 
 ###
-GET http://localhost:8000/api/login/
+GET http://localhost:8080/api/login/
 
 
 ###
 
-POST http://localhost:8000/api/login/ HTTP/1.1
+POST http://localhost:8080/api/login/ HTTP/1.1
 content-type: application/json
 
 {   
-    "login" : "Carlos11111",
-    "senha" : "1234",
-    "excluido":"nao"
+    "id"    : 1,
+    "login" : "teste de edicao",
+    "senha" : "1234"
 }
+
+
+###
+GET http://localhost:8080/api/customview/detect
+
+
+###
+
+POST http://localhost:8080/api/define/ HTTP/1.1
+content-type: application/json
+
+{   
+    "url" : "https://pyimagesearch.com/wp-content/uploads/2015/05/obama.jpg"
+}
+
+
+

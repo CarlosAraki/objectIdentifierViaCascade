@@ -21,12 +21,12 @@ export class LoginsProvider {
     ) 
     {
       if(this._plataform.is("cordova")){
-        //this.basePath = config.apiEndpoint;
+        this.basePath = config.apiEndpoint;
       }
   }
 
   public getAllNotExcludeLogins(){
-    return this.http.get(this.basePath+'/api/login');
+    return this.http.get(this.basePath+'/api/login/?format=json');
   }
 
   public addLogin(body){

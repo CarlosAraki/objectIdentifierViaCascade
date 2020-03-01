@@ -1,6 +1,7 @@
 from django.db import models
 
 class Login(models.Model):
+    id = models.IntegerField
     login = models.CharField(max_length=50)
     senha = models.CharField(max_length=50)
  
