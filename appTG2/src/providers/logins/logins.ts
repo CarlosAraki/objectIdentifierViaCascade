@@ -18,6 +18,7 @@ export class LoginsProvider {
     public http: HttpClient,
     private _plataform: Platform,
     @Inject(APP_CONFIG_TOKEN) private config: ApplicationConfig,
+    
     ) 
     {
       if(this._plataform.is("cordova")){

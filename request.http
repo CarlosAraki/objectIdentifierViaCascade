@@ -72,4 +72,33 @@ content-type: application/json
 }
 
 
+############ -- NEW API -- ###############
 
+### Get All Data
+GET http://localhost:8000/test_model/
+### Save New Data
+POST http://localhost:8000/test_model/ HTTP/1.1
+content-type: application/json
+
+{  
+    "name" : "teste",
+    "exclude": "no"
+}
+
+### Edit Data Complete
+PUT http://localhost:8000/test_model/3/ HTTP/1.1
+content-type: application/json
+
+{   
+    "name"      : "Novamente", 
+    "exclude"   : "no"
+}
+
+
+### Edit Data Incomplete
+PATCH http://localhost:8000/test_model/1/ HTTP/1.1
+content-type: application/json
+
+{   
+    "exclude"   : "nao"
+}

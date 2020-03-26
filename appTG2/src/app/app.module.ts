@@ -7,8 +7,9 @@ import { AboutPage } from '../pages/about/about';
 import { ContactPage } from '../pages/contact/contact';
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
+import { ApptgPage } from '../pages/apptg/apptg';
+import { ConnectionPage } from '../pages/connection/connection';
 import { APP_CONFIG_TOKEN, APP_CONFIG } from './app-config';
-
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -18,7 +19,7 @@ import { PictureshostProvider } from '../providers/pictureshost/pictureshost';
 import { LoginsProvider } from '../providers/logins/logins';
 import { Camera } from '@ionic-native/camera';
 import { PicturesProvider } from '../providers/pictures/pictures';
-
+import { ConnectionTestProvider } from '../providers/connection-test/connection-test';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,8 @@ import { PicturesProvider } from '../providers/pictures/pictures';
     ContactPage,
     HomePage,
     TabsPage,
+    ApptgPage,
+    ConnectionPage,
   ],
   imports: [
     BrowserModule,
@@ -40,7 +43,9 @@ import { PicturesProvider } from '../providers/pictures/pictures';
     AboutPage,
     ContactPage,
     HomePage,
-    TabsPage
+    TabsPage,
+    ApptgPage,
+    ConnectionPage,
   ],
   providers: [
     StatusBar,
@@ -50,7 +55,8 @@ import { PicturesProvider } from '../providers/pictures/pictures';
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     PictureshostProvider,
     LoginsProvider,
-    PicturesProvider
+    PicturesProvider,
+    ConnectionTestProvider
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
