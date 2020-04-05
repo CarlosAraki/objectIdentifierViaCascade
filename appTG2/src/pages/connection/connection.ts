@@ -51,8 +51,9 @@ export class ConnectionPage {
         var a=[], b=data;
         a.push(b);
         this.nameList = a;
+        this.inputNewName = a;
       },e=>{
-        console.log('ErrorPostConnection__46',e);
+        console.log('ErrorPostConnection__',e);
       })
   }
 
@@ -61,11 +62,9 @@ export class ConnectionPage {
       data=>{
         let prep = this.removeExclude(data);
         this.nameList = (prep as any);
-        console.log('nameList',data);
-
         this.inputNewName = this.nameList;
       },e=>{
-        console.log('ErrorGetAllConnection__55',e);
+        console.log('ErrorGetAllConnection__',e);
       })
   }
 
@@ -75,54 +74,64 @@ export class ConnectionPage {
       data=>{
         var a=[], b=JSON.parse(JSON.stringify(data));
         a.push(b);
-        this.nameList =[];
         this.nameList = a;
-        console.log('aaaa',a)
-        console.log('aaaa',data)
-        console.log('aaaa',this.nameList)
+        this.inputNewName = a;
       },e=>{
-        console.log('ErrorGetByIdConnection__64',e);
+        console.log('ErrorGetByIdConnection__',e);
       })
   }
 
   clearListButton(){
     this.nameList = [];
+    this.inputNewName = [];
   }
 
   editButtonByID(id = 0){
+    let arr = this.returnId(this.inputNewName,id)
+    if(!arr) return false; 
     let body = {
-      name: this.inputNewName[--id].name
+      name: arr.name
     };
-    id++
     let bodyJSON = JSON.stringify(body);
+    console.log(bodyJSON)
     this.connectionTestProvider.patchByIdConnection(id,bodyJSON).subscribe(
       data=>{
-        var a=[], b= JSON.parse(JSON.stringify(data));
-        a.push(b);
-       
+        this.inputNewName = [];
+        this.nameList = [];
+        this.getAllButton()
       },e=>{
-        console.log('ErrorEditConnection__72',e);
+        console.log('ErrorEditConnection__',e);
       })
   }
 
   deleteButtonByID(id = 0){
     this.connectionTestProvider.excludeByIdLogin(id).subscribe(
       data=>{
-        var a=[], b=data;
-        a.push(b);
-        this.nameList = a;
+        this.inputNewName = [];
+        this.nameList = [];
+        this.getAllButton()
       },e=>{
-        console.log('ErrorEditConnection__72',e);
+        console.log('ErrorDeleteConnection__',e);
       })
   }
 
   private removeExclude(arr) {
+    let arr2 = [];
     for(var i in arr){
-      if(arr[i].exclude=='sim'){
-          arr.splice(i,1);
+      if(arr[i].exclude=='nao'){
+          arr2.push(arr[i]) 
       }
     }
-    return arr;
+    return arr2;
+  }
+
+  private returnId(arr,id) {
+    for(var i in arr){
+      if(arr[i].id == id){
+          return arr[i];
+      }
+    }
+    return false;
   }
 
 }

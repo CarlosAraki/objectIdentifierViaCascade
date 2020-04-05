@@ -12,7 +12,7 @@ export interface ApplicationConfig {
 // Configuration values for our app
 export var APP_CONFIG: ApplicationConfig = {
   appName: 'Tg2',
-  apiEndpoint: 'http://localhost:8000',
+  apiEndpoint: 'http://localhost:8080',
   adapter: 'idb',
 };
 
