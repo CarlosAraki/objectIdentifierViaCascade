@@ -6,10 +6,31 @@
 -->
 <ion-header>
   <ion-navbar>
-    <ion-title>apptg</ion-title>
+    <ion-title>Save Picture</ion-title>
+  </ion-navbar>
+  <ion-navbar>
+    <button ion-button (click) ="cameraButton()">Camera</button>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
+  <ion-card>
+    <div> 
+        <button ion-button (click) ="listButton()">List Pic</button>
+        <button ion-button (click) ="getButton()">Get Pic</button>
+        <button ion-button (click) ="clearButton()">Clear List</button>
+    </div>
 
+    <ion-list *ngFor="let id of _idImagens; let i = index" >
+      <ion-item>
+        <ion-card style=" text-align: center">
+          <ion-item style=" text-align: center">
+            ID-{{id}}
+          </ion-item>
+          <button ion-button (click) ="optionsButton(id)">Options</button>
+          <button ion-button (click) ="excludeButton(id)">Exclude</button>
+        </ion-card>
+      </ion-item>
+    </ion-list>
+  </ion-card>
 </ion-content>

@@ -1,0 +1,42 @@
+<!--
+  Generated template for the OptionsPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar>
+    <ion-title>Options {{idPic}} Pic</ion-title>
+    <ion-buttons end>
+      <button ion-button (click)="closeOptions()">Close</button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <img style="object-fit: cover" src="">
+  <ion-card>
+    <ion-list>
+      <ion-item>
+        <ion-label>Algorithm Type</ion-label>
+        <ion-select [(ngModel)]="algorithmType" placeholder="Algorithm Type" >
+          <ion-option value="1">Primeiro Algoritmo</ion-option>
+          <ion-option value="2">Segundo</ion-option>
+        </ion-select>
+      </ion-item>
+      <ion-item >
+        <ion-label>Compare With Hist</ion-label>
+        <ion-select [(ngModel)]="compareImage" placeholder="Compare Image" >
+          <ion-option value="1">Primeira Imagem Processada</ion-option>
+          <ion-option value="2">Segunda</ion-option>
+        </ion-select>
+      </ion-item>
+      <ion-item style=" text-align: center">
+        <button ion-button (click) ="processButton()">Process</button>
+        <button ion-button (click) ="compareButton()">Compare</button>
+      </ion-item>
+    </ion-list>
+  </ion-card>
+  
+
+</ion-content>
