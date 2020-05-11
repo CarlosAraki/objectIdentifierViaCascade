@@ -131,7 +131,28 @@ STATIC_URL = '/static/'
 #libero tudo no cors
 CORS_ORIGIN_ALLOW_ALL = True
 
-# CORS_ORIGIN_WHITELIST = [
-#     "http://localhost:8080",
-#     "http://localhost:8000"
-# ]
+CORS_ORIGIN_WHITELIST = [
+    "http://localhost:8080",
+    "http://localhost:8000"
+]
+
+CORS_ALLOW_HEADERS = [
+    'accept',
+    'accept-encoding',
+    'authorization',
+    'content-type',
+    'dnt',
+    'origin',
+    'user-agent',
+    'x-csrftoken',
+    'x-requested-with',
+]
+
+CORS_ALLOW_METHODS = [
+    'DELETE',
+    'GET',
+    'OPTIONS',
+    'PATCH',
+    'POST',
+    'PUT',
+]

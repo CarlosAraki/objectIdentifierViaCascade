@@ -16,16 +16,16 @@ import { ConnectionTestProvider } from '../../providers/connection-test/connecti
   templateUrl: 'connection.html',
 })
 export class ConnectionPage {
-  public nameList: any =[];
-  public inputNewName : any = [];
+  public nameList: any = [];
+  public inputNewName: any = [];
   public formName: FormGroup;
   public formId: FormGroup;
 
   constructor(
     public navCtrl: NavController,
-    public connectionTestProvider : ConnectionTestProvider,
+    public connectionTestProvider: ConnectionTestProvider,
     public formBuilder: FormBuilder,
-    ) {
+  ) {
     let name = '';
     let id = '';
     this.formName = formBuilder.group({
@@ -40,95 +40,95 @@ export class ConnectionPage {
     console.log('ionViewDidLoad ConnectionPage');
   }
 
-  postButton(){
+  postButton() {
     let body = {
       name: this.formName.value.name,
-      exclude:'nao'
+      exclude: 'nao'
     };
     let bodyJSON = JSON.stringify(body);
     this.connectionTestProvider.postConnection(bodyJSON).subscribe(
-      data=>{
-        var a=[], b=data;
+      data => {
+        var a = [], b = data;
         a.push(b);
         this.nameList = a;
         this.inputNewName = a;
-      },e=>{
-        console.log('ErrorPostConnection__',e);
+      }, e => {
+        console.log('ErrorPostConnection__', e);
       })
   }
 
-  getAllButton(){
+  getAllButton() {
     this.connectionTestProvider.getAllConnection().subscribe(
-      data=>{
+      data => {
         let prep = this.removeExclude(data);
         this.nameList = (prep as any);
         this.inputNewName = this.nameList;
-      },e=>{
-        console.log('ErrorGetAllConnection__',e);
+      }, e => {
+        console.log('ErrorGetAllConnection__', e);
       })
   }
 
-  getByIdButton(){
+  getByIdButton() {
     let id = this.formId.value.id;
     this.connectionTestProvider.getByIdConnection(id).subscribe(
-      data=>{
-        var a=[], b=JSON.parse(JSON.stringify(data));
+      data => {
+        var a = [], b = JSON.parse(JSON.stringify(data));
         a.push(b);
         this.nameList = a;
         this.inputNewName = a;
-      },e=>{
-        console.log('ErrorGetByIdConnection__',e);
+      }, e => {
+        console.log('ErrorGetByIdConnection__', e);
       })
   }
 
-  clearListButton(){
+  clearListButton() {
     this.nameList = [];
     this.inputNewName = [];
   }
 
-  editButtonByID(id = 0){
-    let arr = this.returnId(this.inputNewName,id)
-    if(!arr) return false; 
+  editButtonByID(id = 0) {
+    let arr = this.returnId(this.inputNewName, id)
+    if (!arr) return false;
     let body = {
       name: arr.name
     };
     let bodyJSON = JSON.stringify(body);
     console.log(bodyJSON)
-    this.connectionTestProvider.patchByIdConnection(id,bodyJSON).subscribe(
-      data=>{
+    this.connectionTestProvider.patchByIdConnection(id, bodyJSON).subscribe(
+      data => {
         this.inputNewName = [];
         this.nameList = [];
         this.getAllButton()
-      },e=>{
-        console.log('ErrorEditConnection__',e);
+      }, e => {
+        console.log('ErrorEditConnection__', e);
       })
   }
 
-  deleteButtonByID(id = 0){
+  deleteButtonByID(id = 0) {
     this.connectionTestProvider.excludeByIdLogin(id).subscribe(
-      data=>{
+      data => {
         this.inputNewName = [];
         this.nameList = [];
         this.getAllButton()
-      },e=>{
-        console.log('ErrorDeleteConnection__',e);
+      }, e => {
+        console.log('ErrorDeleteConnection__', e);
       })
   }
 
   private removeExclude(arr) {
     let arr2 = [];
-    for(var i in arr){
-      if(arr[i].exclude=='nao'){
-          arr2.push(arr[i]) 
+    for (var i in arr) {
+      if (arr[i].exclude == 'nao') {
+        arr2.push(arr[i])
       }
     }
     return arr2;
   }
 
-  private returnId(arr,id) {
-    for(var i in arr){
-      if(arr[i].id == id){
-          return arr[i];
+  private returnId(arr, id) {
+    for (var i in arr) {
+      if (arr[i].id == id) {
+        return arr[i];
       }
     }
     return false;

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { IonicPage,AlertController ,ModalController, NavController, NavParams } from 'ionic-angular';
-import { Camera,CameraOptions } from '@ionic-native/camera';
+import { IonicPage, AlertController, ModalController, NavController, NavParams } from 'ionic-angular';
+import { Camera, CameraOptions } from '@ionic-native/camera';
+import { PicturesProvider } from '../../providers/pictures/pictures';
 
 /**
  * Generated class for the ApptgPage page.
@@ -15,13 +16,15 @@ import { Camera,CameraOptions } from '@ionic-native/camera';
   templateUrl: 'apptg.html',
 })
 export class ApptgPage {
-  
-  _idImagens = ['1','2'];
+
+  _idImagens : any = [{}];
+
   constructor(
-    public navCtrl: NavController, 
-    public modalCtrl: ModalController, 
-    private camera:Camera,
-    public alertCtrl: AlertController, 
+    public navCtrl: NavController,
+    public modalCtrl: ModalController,
+    private camera: Camera,
+    public _pictureProvider: PicturesProvider,
+    public alertCtrl: AlertController,
     public navParams: NavParams) {
   }
 
@@ -29,45 +32,52 @@ export class ApptgPage {
     console.log('ionViewDidLoad ApptgPage');
   }
 
-  cameraButton(){
+  cameraButton() {
     const options: CameraOptions = {
       quality: 100,
       destinationType: this.camera.DestinationType.DATA_URL,
       encodingType: this.camera.EncodingType.JPEG,
       mediaType: this.camera.MediaType.PICTURE,
-      saveToPhotoAlbum:true,
+      saveToPhotoAlbum: true,
       correctOrientation: true
     };
     this.camera.getPicture(options).then((imageData) => {
-      let jsonPic =  'data:image/png;base64,' + imageData;
-      let date: Date = new Date();  
-      let data = {
-        jsonPic,
-        date
-      }
-      let json = JSON.stringify(data);
-      // this.savePicture(json);
+      let jsonPic = 'data:image/png;base64,' + imageData;
+      let date: Date = new Date();
+      let body = {
+        data64: jsonPic,
+        exclude: 'nao',
+      };
+      this.savePicture(body);
     }, (err) => {
       console.log("Camera issue:" + err);
     });
   }
 
-  listButton(){
-    console.log('click')
+  listButton() {
+    this._pictureProvider.getAllNotExcludePictures().subscribe(
+      data => {
+        console.log(data);
+        this._idImagens = data;
+      },
+      error => {
+        console.log('erro savePicture');
+      }
+    )
   }
 
-  clearButton(){
-    this._idImagens = []
+  clearButton() {
+    this._idImagens = [];
   }
 
-  getButton(){
+  getButton() {
     let alert = this.alertCtrl.create({
-      title: 'Get Pic By Id',
+      title: 'Get Pic By id',
       inputs: [
         {
           name: 'idnumber',
           placeholder: 'Id Number',
-          type:'number'
+          type: 'number'
         }
       ],
       buttons: [
@@ -82,6 +92,15 @@ export class ApptgPage {
           text: 'Get Pic',
           handler: () => {
             console.log('Get clicked');
+            this._pictureProvider.getPictureById(name).subscribe(
+              data => {
+                this._idImagens = data
+                console.log(data);
+              },
+              error => {
+                console.log('erro savePicture');
+              }
+            )
           }
         }
       ]
@@ -89,13 +108,34 @@ export class ApptgPage {
     alert.present();
   }
 
-  optionsButton(id){
-    console.log('click')
-    const optionsModal = this.modalCtrl.create('OptionsPage',{id:id})
+  optionsButton(pic) {
+    const optionsModal = this.modalCtrl.create('OptionsPage', { pic: pic })
     optionsModal.present()
   }
 
-  excludeButton(id){
+  excludeButton(id) {
+    this._pictureProvider.excludePicture(id).subscribe(
+      data => {
+        console.log(data);
+      },
+      error => {
+        console.log('erro savePicture');
+      }
+    )
     console.log('click')
+  }
+
+  savePicture(bodyImage) {
+    console.log(bodyImage);
+  
+    let jsonStringifyBodyImage  = JSON.stringify(bodyImage);
+    this._pictureProvider.addPicture(jsonStringifyBodyImage).subscribe(
+      data => {
+        console.log(data);
+      },
+      error => {
+        console.log('erro savePicture');
+      }
+    )
   }
 }

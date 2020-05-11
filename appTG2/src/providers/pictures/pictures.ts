@@ -13,43 +13,46 @@ import { ApplicationConfig, APP_CONFIG_TOKEN } from '../../app/app-config';
 @Injectable()
 export class PicturesProvider {
 
-  private basePath = '/apiTg2';
+  private basePath = '';
 
   constructor(
     public http: HttpClient,
     private _plataform: Platform,
     @Inject(APP_CONFIG_TOKEN) private config: ApplicationConfig,
-    ) 
-    {
-      if(this._plataform.is("cordova")){
-        this.basePath = config.apiEndpoint;
-      }
+  ) {
+    if (this._plataform.is("cordova")) {
+      this.basePath = config.apiEndpoint;
+    }
   }
 
-  public getAllNotExcludePictures(){
-    return this.http.get(this.basePath+'/rest/pictures/all');
+  public getAllNotExcludePictures() {
+    return this.http.get(this.basePath + '/picture_origin/');
   }
 
-  public addPicture(body){
+  public addPicture(body) {
     const httpOptions = {
       headers: new HttpHeaders({
-        'Content-Type':  'application/json',
+        'Content-Type': 'application/json',
       })
-    };  
-    return this.http.post(this.basePath+'/rest/pictures/load',body, httpOptions);
+    };
+    return this.http.post(this.basePath + '/picture_origin/', body, httpOptions);
   }
 
-  public excludePicture(id){
+
+  public excludePicture(id) {
     const httpOptions = {
       headers: new HttpHeaders({
-        'Content-Type':  'application/json',
+        'Content-Type': 'application/json',
       })
-    };  
-    return this.http.post(this.basePath+'/rest/pictures/exclude',id,httpOptions);
+    };
+    let body = {
+      "exclude": "sim"
+    }
+    return this.http.patch(this.basePath + '/picture_origin/' + id + '/', JSON.stringify(body), httpOptions);
   }
 
-  public getPictureById(id){
-    return this.http.get(this.basePath+'/rest/pictures/loadbyid/'+id);
+  public getPictureById(id) {
+    return this.http.get(this.basePath + '/picture_origin/' + id);
   }
 
 }

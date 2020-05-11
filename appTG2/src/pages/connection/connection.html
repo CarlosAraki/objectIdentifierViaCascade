@@ -12,26 +12,26 @@
 
 <ion-content padding>
   <ion-card>
-    <ion-list >        
+    <ion-list>
       <form [formGroup]="formName">
         <ion-item>
-          <ion-input type="text"  placeholder = "Text for POST" formControlName="name" ></ion-input>
+          <ion-input type="text" placeholder="Text for POST" formControlName="name"></ion-input>
         </ion-item>
         <ion-item>
-          <div align ="center">
-            <button ion-button color="medium"  (click) ="postButton()">POST</button>
-            <button ion-button color="medium" (click) ="getAllButton()">GET LIST</button>
+          <div align="center">
+            <button ion-button color="medium" (click)="postButton()">POST</button>
+            <button ion-button color="medium" (click)="getAllButton()">GET LIST</button>
           </div>
         </ion-item>
       </form>
       <form [formGroup]="formId">
         <ion-item>
-          <ion-input type="number" placeholder = "ID for GET ID" formControlName="id" ></ion-input>
+          <ion-input type="number" placeholder="ID for GET ID" formControlName="id"></ion-input>
         </ion-item>
         <ion-item>
-          <div align ="center">
-            <button ion-button color="medium" (click) ="getByIdButton()">GET ID</button>
-            <button ion-button color="medium" (click) ="clearListButton()">CLEAR LIST</button>
+          <div align="center">
+            <button ion-button color="medium" (click)="getByIdButton()">GET ID</button>
+            <button ion-button color="medium" (click)="clearListButton()">CLEAR LIST</button>
           </div>
         </ion-item>
       </form>
@@ -39,17 +39,18 @@
   </ion-card>
 
   <ion-card>
-    <ion-list *ngFor="let name of nameList; let i = index" >
+    <ion-list *ngFor="let name of nameList; let i = index">
       <ion-card>
-        <ion-list >
+        <ion-list>
           <ion-item>
-            <ion-input placeholder ="ID:{{name.id}} - DATA:{{name.name}}" type="text" [(ngModel)]="inputNewName[i].name"></ion-input>
+            <ion-input placeholder="ID:{{name.id}} - DATA:{{name.name}}" type="text" [(ngModel)]="inputNewName[i].name">
+            </ion-input>
           </ion-item>
-            <div align ="center">
-              <button ion-button color="medium" (click) ="editButtonByID(name.id)">Editar</button>
-              <button ion-button color="danger" (click) ="deleteButtonByID(name.id)">Apagar</button>
-            </div>
-          </ion-list>
+          <div align="center">
+            <button ion-button color="medium" (click)="editButtonByID(name.id)">Editar</button>
+            <button ion-button color="danger" (click)="deleteButtonByID(name.id)">Apagar</button>
+          </div>
+        </ion-list>
       </ion-card>
     </ion-list>
   </ion-card>

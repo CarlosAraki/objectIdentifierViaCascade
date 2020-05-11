@@ -9,26 +9,26 @@
     <ion-title>Save Picture</ion-title>
   </ion-navbar>
   <ion-navbar>
-    <button ion-button (click) ="cameraButton()">Camera</button>
+    <button ion-button (click)="cameraButton()">Camera</button>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
   <ion-card>
-    <div> 
-        <button ion-button (click) ="listButton()">List Pic</button>
-        <button ion-button (click) ="getButton()">Get Pic</button>
-        <button ion-button (click) ="clearButton()">Clear List</button>
+    <div>
+      <button ion-button (click)="listButton()">List Pic</button>
+      <button ion-button (click)="getButton()">Get Pic</button>
+      <button ion-button (click)="clearButton()">Clear List</button>
     </div>
 
-    <ion-list *ngFor="let id of _idImagens; let i = index" >
+    <ion-list *ngFor="let pic of _idImagens; let i = index">
       <ion-item>
         <ion-card style=" text-align: center">
           <ion-item style=" text-align: center">
-            ID-{{id}}
+           ID:{{pic.id}} - UUID : {{pic.uu_id}}
           </ion-item>
-          <button ion-button (click) ="optionsButton(id)">Options</button>
-          <button ion-button (click) ="excludeButton(id)">Exclude</button>
+          <button ion-button (click)="optionsButton(pic)">Options</button>
+          <button ion-button (click)="excludeButton(pic.id)">Exclude</button>
         </ion-card>
       </ion-item>
     </ion-list>

@@ -15,6 +15,7 @@ import { IonicPage, NavController, NavParams, ViewController, ModalController } 
 })
 export class OptionsPage {
   idPic
+  pic
   algorithmType
   compareImage 
   constructor(
@@ -26,7 +27,8 @@ export class OptionsPage {
 
   ionViewWillLoad() {
     console.log('ionViewDidLoad OptionsPage');
-    this.idPic =  this.navParams.get('id')
+    this.pic =  this.navParams.get('pic')
+    this.idPic = this.pic.id
   }
 
   processButton(){
