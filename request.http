@@ -113,3 +113,12 @@ content-type: application/json
 {   
     "exclude"   : "nao"
 }
+
+
+###
+POST     http://localhost:8080/returnimage HTTP/1.1
+content-type: application/json
+
+{
+    "uuid":"dcd23cf3-ff3a-468e-8340-28b510067797"
+}

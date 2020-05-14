@@ -42,7 +42,7 @@ export class ApptgPage {
       correctOrientation: true
     };
     this.camera.getPicture(options).then((imageData) => {
-      let jsonPic = 'data:image/png;base64,' + imageData;
+      let jsonPic = 'data:image/jpg;base64,' + imageData;
       let date: Date = new Date();
       let body = {
         data64: jsonPic,
