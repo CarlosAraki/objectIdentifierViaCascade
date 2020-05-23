@@ -9,5 +9,6 @@ router.register('picture_origin',views.picture_origin_view)
 urlpatterns = [
     path('',include(router.urls)),
     path('funcaopaola',views.funcaopaola),
-    path('returnimage',views.returnImageByUUId)
+    path('returnimage',views.returnImageByUUId),
+    path('createcascade',views.generateCascadeByPath)
 ]
