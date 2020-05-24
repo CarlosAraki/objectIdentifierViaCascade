@@ -42,22 +42,22 @@ def returnImageByUUId(request):
         json_data = json.loads(request.body)
         if "uuid" in json_data:
             face_cascade = cv2.CascadeClassifier('C:\\opencv\\build\\etc\\haarcascades\\haarcascade_frontalface_default.xml')
-            card_cascade = cv2.CascadeClassifier('C:\\xampp\\htdocs\\TG2\\apiTG2python\\apiv2\\data\\cascade.xml')
+            card_cascade = cv2.CascadeClassifier('C:\\xampp\\htdocs\\TG2\\apiTG2python\\apiv2\\cascade\\cascade_number3_20200524.xml')
             uuid = (json_data['uuid'])
             path = './imagens/'+uuid+".jpg";
             img = cv2.imread(path)
             gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
             faces = face_cascade.detectMultiScale(gray,scaleFactor=1.3, minNeighbors=2)
-            cards = card_cascade.detectMultiScale(gray,scaleFactor=3, minNeighbors=5)
+            cards = card_cascade.detectMultiScale(gray,scaleFactor=5, minNeighbors=5)
 
             for (x,y,w,h) in faces:
                 # img = cv2.rectangle(img,(x,y),(x+w,y+h),(0,255,0),2)
                 pass
             
             for (x,y,w,h) in cards:
-                # img = cv2.rectangle(img,(x,y),(x+w,y+h),(255,0,0),2) 
-                font = cv2.FONT_HERSHEY_SIMPLEX
-                cv2.putText(img,'CARD',(x-w,y-h), font, 0.5, (0,0,255), 2, cv2.LINE_AA)
+                img = cv2.rectangle(img,(x,y),(x+w,y+h),(0,255,255),2) 
+                # font = cv2.FONT_HERSHEY_SIMPLEX
+                # cv2.putText(img,'CARD',(w,h), font, 0.5, (0,255,0), 1, cv2.LINE_AA)
                 pass
            
             cv2.imshow(uuid,img)
@@ -106,13 +106,15 @@ def makePositiveCascade(path,files):
         
     for file in files:
         img = cv2.imread(path+'/'+file , cv2.IMREAD_UNCHANGED)
-        height, width, channels = img.shape
-        line = path+'/'+file+' 1 0 0 '+str(height)+' '+str(width)+'\n'
-        f = open('pos.dat','a')
-        try:
-            f.write(line)
-        finally:
-            f.close()
+        roi = defineROI(img)
+        if roi[2] != -1:
+            line = path+'/'+file+' 1 '+str(roi[0])+' '+str(roi[1])+' '+str(roi[2])+' '+str(roi[3])+'\n'
+            f = open('pos.dat','a')
+            try:
+                f.write(line)
+            finally:
+                f.close()
+            pass
 
     return HttpResponse('POST_path_pos_OK')
 
@@ -132,3 +134,20 @@ def makeNegativeCascade(path,files):
             f.close()
 
     return HttpResponse('POST_path_neg_OK')
+
+
+def defineROI(image):
+    r = cv2.selectROI(image)
+    value    = []
+    value.append(r[0])
+    value.append(r[1])
+    if r[0] == 0 and r[1] == 0 and r[2] == 0 and r[3] == 0:
+        height, width, channels = image.shape
+        value.append(-1); #imagem muito grande para ser apresentado
+        value.append(-1);
+    else:        
+        value.append(r[2]);
+        value.append(r[3]);
+        pass
+    return value
+

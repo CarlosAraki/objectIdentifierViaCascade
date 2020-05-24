@@ -1,4 +1,4 @@
 ./opencv_createsamples -img 1.jpg -bg neg.txt -info info/info.lst -pngoutput info -maxxangle 0.5 -maxyangle 0.5 -maxzangle 0.5 -num 195
-./opencv_createsamples -info pos.dat -num 5 -w 20 -h 20 -vec positives.vec
-./opencv_createsamples -info info/info.lst -num 5 -w 20 -h 20 -vec positives.vec
-./opencv_traincascade -data C:\xampp\htdocs\TG2\apiTG2python\apiv2\data -vec positives.vec -bg neg.txt -numPos 190 -numNeg 200 -numStages 10 -w 20 -h 20
+./opencv_createsamples -info pos.dat -w 50 -h 50 -vec positives.vec
+./opencv_createsamples -info info/info.lst -num 118 -w 20 -h 20 -vec positives.vec
+./opencv_traincascade -data C:\xampp\htdocs\TG2\apiTG2python\apiv2\data -vec positives.vec -bg neg.txt -numPos 118 -numNeg 1960 -numStages 10 -w 50 -h 50
