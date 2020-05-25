@@ -42,13 +42,13 @@ def returnImageByUUId(request):
         json_data = json.loads(request.body)
         if "uuid" in json_data:
             face_cascade = cv2.CascadeClassifier('C:\\opencv\\build\\etc\\haarcascades\\haarcascade_frontalface_default.xml')
-            card_cascade = cv2.CascadeClassifier('C:\\xampp\\htdocs\\TG2\\apiTG2python\\apiv2\\cascade\\cascade_number3_20200524.xml')
+            card_cascade = cv2.CascadeClassifier('C:\\xampp\\htdocs\\TG2\\apiTG2python\\apiv2\\cascade\\cascade_number3_20200525.xml')
             uuid = (json_data['uuid'])
             path = './imagens/'+uuid+".jpg";
             img = cv2.imread(path)
             gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
             faces = face_cascade.detectMultiScale(gray,scaleFactor=1.3, minNeighbors=2)
-            cards = card_cascade.detectMultiScale(gray,scaleFactor=5, minNeighbors=5)
+            cards = card_cascade.detectMultiScale(gray,scaleFactor=1.3, minNeighbors=20)
 
             for (x,y,w,h) in faces:
                 # img = cv2.rectangle(img,(x,y),(x+w,y+h),(0,255,0),2)
@@ -85,6 +85,8 @@ def generateCascadeByPath(request):
                     return makePositiveCascade(path,files)
                 if(json_data['type'] == 'negative'):
                     return makeNegativeCascade(path,files)
+                if(json_data['type'] == 'gray'):
+                    return makeGray(path,files)
                 else:
                     return HttpResponse('Fail_POST_type')
             else:
@@ -150,4 +152,12 @@ def defineROI(image):
         value.append(r[3]);
         pass
     return value
+
+
+def makeGray(path,files):
+    for file in files:
+        img = cv2.imread(path+'/'+file , cv2.IMREAD_UNCHANGED)
+        gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+        cv2.imwrite(path+'/'+file, gray) 
+    return HttpResponse('POST_path_gray_OK')
 
