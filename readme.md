@@ -1,3 +1,8 @@
+# All Documentation
+
+https://docs.google.com/viewer?url=https://raw.githubusercontent.com/CarlosAraki/objectIdentifierViaCascade/master/relatorioFinal.pdf
+
+
 # Requisitos Gerais
 ## Requisitos utilizados para app em ionic3
 
